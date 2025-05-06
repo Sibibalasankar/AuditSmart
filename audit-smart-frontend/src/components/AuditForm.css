@@ -1,0 +1,160 @@
+.audit-form {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 16px;
+    max-width: 640px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .file-upload {
+    margin-bottom: 2.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .file-upload.dragging {
+    background: rgba(76, 201, 240, 0.1);
+    border-color: var(--accent);
+  }
+  
+  .file-upload input[type="file"] {
+    display: none;
+  }
+  
+  .file-upload label {
+    display: block;
+    padding: 2.5rem;
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .file-upload:hover label,
+  .file-upload.dragging label {
+    border-color: var(--accent);
+    background: rgba(76, 201, 240, 0.05);
+    transform: translateY(-2px);
+  }
+  
+  .upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .upload-icon {
+    margin-bottom: 1rem;
+  }
+  
+  .upload-text {
+    text-align: center;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  .browse-link {
+    color: var(--accent);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  
+  .upload-hint {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  
+  .file-name {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  
+  .file-size {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .submit-btn {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .submit-btn:hover:not(.disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(110, 72, 170, 0.4);
+  }
+  
+  .submit-btn.disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .progress-container {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  
+  .progress-indicator {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: var(--primary-gradient);
+    width: 0%;
+    animation: progress 2s ease-in-out infinite;
+  }
+  
+  .progress-text {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  
+  @keyframes progress {
+    0% { 
+      width: 0%;
+      background-position: 0% 50%;
+    }
+    50% { 
+      width: 100%;
+      background-position: 100% 50%;
+    }
+    100% { 
+      width: 0%;
+      background-position: 0% 50%;
+    }
+  }

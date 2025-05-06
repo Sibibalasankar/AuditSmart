@@ -1,0 +1,28 @@
+.value-props {
+    padding: 4rem 0;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .feature-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.2s;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .feature-icon {
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }

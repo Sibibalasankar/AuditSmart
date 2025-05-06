@@ -1,0 +1,238 @@
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    background: radial-gradient(ellipse at bottom, var(--bg-darker) 0%, var(--bg-dark) 100%);
+  }
+  
+  .hero-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    max-width: 850px;
+    width: 100%;
+  }
+  
+  .hero h1 {
+    font-size: clamp(2.7rem, 6vw, 4.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0;
+    background: linear-gradient(to right, #fff 25%, var(--accent) 50%, #fff 75%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shine 6s linear infinite;
+    padding: 0 1rem;
+  }
+  
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+  
+  .subtitle {
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 720px;
+    opacity: 0.9;
+    padding: 0 1rem;
+  }
+  
+  /* CTA Container */
+  .cta-container {
+    display: flex;
+    gap: 1.8rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  /* Primary Button */
+  .primary-btn {
+    position: relative;
+    background: var(--primary-gradient);
+    color: white;
+    padding: 1.15rem 2.75rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 12px 24px rgba(110, 72, 170, 0.3);
+    z-index: 1;
+    min-width: 220px;
+    text-align: center;
+  }
+  
+  .primary-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(157, 80, 187, 0.9), rgba(110, 72, 170, 0.9));
+    z-index: -1;
+    transition: opacity 0.4s ease;
+  }
+  
+  .primary-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(110, 72, 170, 0.4);
+  }
+  
+  .primary-btn:hover::before {
+    opacity: 0.9;
+  }
+  
+  /* Secondary Button */
+  .secondary-btn {
+    position: relative;
+    background: transparent;
+    color: var(--text-primary);
+    padding: 1.15rem 2.75rem;
+    border: 2px solid var(--accent);
+    border-radius: 50px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+    min-width: 220px;
+    text-align: center;
+  }
+  
+  .secondary-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: -1;
+  }
+  
+  .secondary-btn:hover {
+    color: var(--bg-dark);
+    border-color: transparent;
+  }
+  
+  .secondary-btn:hover::before {
+    width: 100%;
+  }
+  
+  /* Scroll Animation Effects */
+  .hero h1.scroll-effect {
+    transition-delay: 0.15s;
+  }
+  
+  .hero .subtitle.scroll-effect {
+    transition-delay: 0.35s;
+  }
+  
+  .hero .cta-container.scroll-effect {
+    transition-delay: 0.55s;
+  }
+  
+  /* Background Elements */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(110, 72, 170, 0.15) 0%, transparent 25%),
+      radial-gradient(circle at 80% 70%, rgba(76, 201, 240, 0.15) 0%, transparent 25%);
+    z-index: 1;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .hero-content {
+      gap: 2.2rem;
+    }
+    
+    .hero-text {
+      gap: 1.5rem;
+    }
+    
+    .cta-container {
+      gap: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      padding: 5rem 1.5rem;
+      min-height: auto;
+    }
+  
+    .hero-content {
+      gap: 2rem;
+      padding: 1.5rem;
+    }
+  
+    .cta-container {
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 400px;
+    }
+  
+    .primary-btn,
+    .secondary-btn {
+      width: 100%;
+      padding: 1.1rem 2.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero h1 {
+      font-size: 2.4rem;
+      line-height: 1.2;
+    }
+  
+    .subtitle {
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+    
+    .primary-btn,
+    .secondary-btn {
+      font-size: 1.05rem;
+      padding: 1rem 2rem;
+      min-width: auto;
+    }
+  }
