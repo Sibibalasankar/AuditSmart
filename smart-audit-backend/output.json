@@ -1,0 +1,100 @@
+{
+  "success": true,
+  "error": null,
+  "results": {
+    "detectors": [
+      {
+        "elements": [
+          {
+            "type": "function",
+            "name": "kill",
+            "source_mapping": {
+              "start": 109,
+              "length": 110,
+              "filename_relative": "contracts/sample.sol",
+              "filename_absolute": "D:/AuditSmart/smart-audit-backend/contracts/sample.sol",
+              "filename_short": "contracts/sample.sol",
+              "is_dependency": false,
+              "lines": [
+                5,
+                6,
+                7
+              ],
+              "starting_column": 5,
+              "ending_column": 6
+            },
+            "type_specific_fields": {
+              "parent": {
+                "type": "contract",
+                "name": "UnprotectedSelfdestruct",
+                "source_mapping": {
+                  "start": 69,
+                  "length": 190,
+                  "filename_relative": "contracts/sample.sol",
+                  "filename_absolute": "D:/AuditSmart/smart-audit-backend/contracts/sample.sol",
+                  "filename_short": "contracts/sample.sol",
+                  "is_dependency": false,
+                  "lines": [
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10
+                  ],
+                  "starting_column": 1,
+                  "ending_column": 2
+                }
+              },
+              "signature": "kill()"
+            }
+          }
+        ],
+        "description": "UnprotectedSelfdestruct.kill() (contracts/sample.sol#5-7) allows anyone to destruct the contract\n",
+        "markdown": "[UnprotectedSelfdestruct.kill()](contracts/sample.sol#L5-L7) allows anyone to destruct the contract\n",
+        "first_markdown_element": "contracts/sample.sol#L5-L7",
+        "id": "dca7f76bc483a4ba39986ddac1a8917eda8003df7d2f749df95d9a3acdc47a4f",
+        "check": "suicidal",
+        "impact": "High",
+        "confidence": "High"
+      },
+      {
+        "elements": [
+          {
+            "type": "pragma",
+            "name": "^0.8.0",
+            "source_mapping": {
+              "start": 42,
+              "length": 23,
+              "filename_relative": "contracts/sample.sol",
+              "filename_absolute": "D:/AuditSmart/smart-audit-backend/contracts/sample.sol",
+              "filename_short": "contracts/sample.sol",
+              "is_dependency": false,
+              "lines": [
+                2
+              ],
+              "starting_column": 1,
+              "ending_column": 24
+            },
+            "type_specific_fields": {
+              "directive": [
+                "solidity",
+                "^",
+                "0.8",
+                ".0"
+              ]
+            }
+          }
+        ],
+        "description": "Version constraint ^0.8.0 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess\n\t- AbiReencodingHeadOverflowWithStaticArrayCleanup\n\t- DirtyBytesArrayToStorage\n\t- DataLocationChangeInInternalOverride\n\t- NestedCalldataArrayAbiReencodingSizeValidation\n\t- SignedImmutables\n\t- ABIDecodeTwoDimensionalArrayMemory\n\t- KeccakCaching.\nIt is used by:\n\t- ^0.8.0 (contracts/sample.sol#2)\n",
+        "markdown": "Version constraint ^0.8.0 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess\n\t- AbiReencodingHeadOverflowWithStaticArrayCleanup\n\t- DirtyBytesArrayToStorage\n\t- DataLocationChangeInInternalOverride\n\t- NestedCalldataArrayAbiReencodingSizeValidation\n\t- SignedImmutables\n\t- ABIDecodeTwoDimensionalArrayMemory\n\t- KeccakCaching.\nIt is used by:\n\t- [^0.8.0](contracts/sample.sol#L2)\n",
+        "first_markdown_element": "contracts/sample.sol#L2",
+        "id": "49997373076f0555a06a98f0b8fbc803e1ad01d3d694aef871b6b384244ba4ac",
+        "check": "solc-version",
+        "impact": "Informational",
+        "confidence": "High"
+      }
+    ]
+  }
+}
