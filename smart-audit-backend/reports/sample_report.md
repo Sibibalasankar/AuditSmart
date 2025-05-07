@@ -46,3 +46,9 @@ It is used by:
 - **Confidence:** High
 - **Source Mapping:** [{'type': 'pragma', 'name': '^0.8.0', 'source_mapping': {'start': 42, 'length': 23, 'filename_relative': 'contracts/sample.sol', 'filename_absolute': 'D:/AuditSmart/smart-audit-backend/contracts/sample.sol', 'filename_short': 'contracts/sample.sol', 'is_dependency': False, 'lines': [2], 'starting_column': 1, 'ending_column': 24}, 'type_specific_fields': {'directive': ['solidity', '^', '0.8', '.0']}}]
 
+
+## Rewritten Contract
+
+```solidity
+// Gemini quota exceeded. Retry after ~30 seconds.
+```

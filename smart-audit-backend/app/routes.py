@@ -25,19 +25,26 @@ async def audit_contract(file: UploadFile = File(...)):
         print("❌ Slither error:", slither_results)
         return slither_results
 
-    print("🤖 Sending to Gemini/OpenAI...")
-    fixed_code = generate_fixed_contract(original_code, slither_results)
-    print("✅ Got fixed code.")
+    vulnerabilities = slither_results  # already a list
 
-    # ✅ Save fixed code to a .sol file
-    fixed_filename = f"{os.path.splitext(file.filename)[0]}_fixed.sol"
-    fixed_path = os.path.join("contracts", fixed_filename)
-    with open(fixed_path, "w") as f:
-        f.write(fixed_code)
-    print("✅ Fixed contract saved at:", fixed_path)
+    fixed_code = None
+
+    if vulnerabilities:
+        print("🤖 Vulnerabilities found. Sending to Gemini/OpenAI...")
+        fixed_code = generate_fixed_contract(original_code, slither_results)
+        print("✅ Got fixed code.")
+
+        # ✅ Save fixed code to a .sol file
+        fixed_filename = f"{os.path.splitext(file.filename)[0]}_fixed.sol"
+        fixed_path = os.path.join("contracts", fixed_filename)
+        with open(fixed_path, "w") as f:
+            f.write(fixed_code)
+        print("✅ Fixed contract saved at:", fixed_path)
+    else:
+        print("✅ No vulnerabilities found. Skipping code rewrite.")
 
     print("📝 Generating report...")
-    report = generate_report(original_code, slither_results)
+    report = generate_report(original_code, vulnerabilities, fixed_code)
 
     report_path = os.path.join("reports", f"{os.path.splitext(file.filename)[0]}_report.md")
     with open(report_path, "w") as f:
@@ -46,8 +53,8 @@ async def audit_contract(file: UploadFile = File(...)):
 
     return {
         "original_filename": file.filename,
-        "vulnerabilities": slither_results,
+        "vulnerabilities": vulnerabilities,
         "fixed_code": fixed_code,
-        "fixed_contract_path": fixed_path,
+        "fixed_contract_path": fixed_path if fixed_code else None,
         "report_path": report_path
     }
