@@ -39,3 +39,37 @@
     font-weight: 600;
     cursor: pointer;
   }
+  /* Add to your existing Phase2Teaser.css */
+
+.token-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 3rem;
+  perspective: 1000px;
+}
+
+.animated-token {
+  width: 150px;
+  height: auto;
+  filter: drop-shadow(0 0 12px rgba(110, 72, 170, 0.5));
+  transition: all 0.3s ease;
+  cursor: pointer;
+  will-change: transform;
+}
+
+/* Enhancements to match your theme */
+.gradient-text {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(110, 72, 170, 0.1);
+}

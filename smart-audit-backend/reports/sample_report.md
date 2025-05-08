@@ -24,7 +24,7 @@ contract UnprotectedSelfdestruct {
 
 - **Impact:** High
 - **Confidence:** High
-- **Source Mapping:** [{'type': 'function', 'name': 'kill', 'source_mapping': {'start': 109, 'length': 110, 'filename_relative': 'contracts/sample.sol', 'filename_absolute': 'D:/AuditSmart/smart-audit-backend/contracts/sample.sol', 'filename_short': 'contracts/sample.sol', 'is_dependency': False, 'lines': [5, 6, 7], 'starting_column': 5, 'ending_column': 6}, 'type_specific_fields': {'parent': {'type': 'contract', 'name': 'UnprotectedSelfdestruct', 'source_mapping': {'start': 69, 'length': 190, 'filename_relative': 'contracts/sample.sol', 'filename_absolute': 'D:/AuditSmart/smart-audit-backend/contracts/sample.sol', 'filename_short': 'contracts/sample.sol', 'is_dependency': False, 'lines': [4, 5, 6, 7, 8, 9, 10], 'starting_column': 1, 'ending_column': 2}}, 'signature': 'kill()'}}]
+- **Source Mapping:** N/A
 
 
 ### solc-version
@@ -44,7 +44,7 @@ It is used by:
 
 - **Impact:** Informational
 - **Confidence:** High
-- **Source Mapping:** [{'type': 'pragma', 'name': '^0.8.0', 'source_mapping': {'start': 42, 'length': 23, 'filename_relative': 'contracts/sample.sol', 'filename_absolute': 'D:/AuditSmart/smart-audit-backend/contracts/sample.sol', 'filename_short': 'contracts/sample.sol', 'is_dependency': False, 'lines': [2], 'starting_column': 1, 'ending_column': 24}, 'type_specific_fields': {'directive': ['solidity', '^', '0.8', '.0']}}]
+- **Source Mapping:** N/A
 
 
 ## Rewritten Contract

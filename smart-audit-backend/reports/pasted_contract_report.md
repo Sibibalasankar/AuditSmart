@@ -3,25 +3,29 @@
 ## Original Code
 
 ```solidity
-// SPDX-License-Identifier: MIT
+// contracts/UnprotectedSelfdestruct.sol
 pragma solidity ^0.8.0;
 
-contract NoAccessControl {
-    address public owner;
-    uint public storedData;
-
-    constructor() {
-        owner = msg.sender;
+contract UnprotectedSelfdestruct {
+    function kill() public {
+        selfdestruct(payable(msg.sender)); // anyone can destroy the contract
     }
 
-    function updateData(uint _data) public {
-        storedData = _data;
-    }
+    receive() external payable {}
 }
 
 ```
 
 ## Detected Vulnerabilities
+
+### suicidal
+
+- **Description:** UnprotectedSelfdestruct.kill() (contracts/pasted_contract.sol#5-7) allows anyone to destruct the contract
+
+- **Impact:** High
+- **Confidence:** High
+- **Source Mapping:** N/A
+
 
 ### solc-version
 
@@ -36,27 +40,9 @@ contract NoAccessControl {
 	- ABIDecodeTwoDimensionalArrayMemory
 	- KeccakCaching.
 It is used by:
-	- ^0.8.0 (contracts/CleanContract.sol#2)
+	- ^0.8.0 (contracts/pasted_contract.sol#2)
 
 - **Impact:** Informational
-- **Confidence:** High
-- **Source Mapping:** N/A
-
-
-### naming-convention
-
-- **Description:** Parameter NoAccessControl.updateData(uint256)._data (contracts/CleanContract.sol#12) is not in mixedCase
-
-- **Impact:** Informational
-- **Confidence:** High
-- **Source Mapping:** N/A
-
-
-### immutable-states
-
-- **Description:** NoAccessControl.owner (contracts/CleanContract.sol#5) should be immutable 
-
-- **Impact:** Optimization
 - **Confidence:** High
 - **Source Mapping:** N/A
 

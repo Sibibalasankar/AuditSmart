@@ -1,15 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract NoAccessControl {
-    address public owner;
-    uint public storedData;
+contract OverflowVulnerable {
+    mapping(address => uint256) public balances;
 
-    constructor() {
-        owner = msg.sender;
+    function addBalance(uint256 amount) public {
+        // ❌ Vulnerability: Overflow not checked in Solidity < 0.8
+        balances[msg.sender] += amount;
     }
 
-    function updateData(uint _data) public {
-        storedData = _data;
+    function subtractBalance(uint256 amount) public {
+        // ❌ Vulnerability: Underflow
+        balances[msg.sender] -= amount;
     }
 }

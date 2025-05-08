@@ -14,7 +14,7 @@ async def audit_contract(file: UploadFile = File(...)):
     contract_path = await save_uploaded_file(file, "contracts")
 
     print("📖 Reading original code...")
-    with open(contract_path, "r") as f:
+    with open(contract_path, "r", encoding="utf-8") as f:
         original_code = f.read()
 
     print("🛠 Running Slither...")
@@ -26,7 +26,6 @@ async def audit_contract(file: UploadFile = File(...)):
         return slither_results
 
     vulnerabilities = slither_results  # already a list
-
     fixed_code = None
 
     if vulnerabilities:
@@ -37,7 +36,7 @@ async def audit_contract(file: UploadFile = File(...)):
         # ✅ Save fixed code to a .sol file
         fixed_filename = f"{os.path.splitext(file.filename)[0]}_fixed.sol"
         fixed_path = os.path.join("contracts", fixed_filename)
-        with open(fixed_path, "w") as f:
+        with open(fixed_path, "w", encoding="utf-8") as f:
             f.write(fixed_code)
         print("✅ Fixed contract saved at:", fixed_path)
     else:
@@ -47,7 +46,7 @@ async def audit_contract(file: UploadFile = File(...)):
     report = generate_report(original_code, vulnerabilities, fixed_code)
 
     report_path = os.path.join("reports", f"{os.path.splitext(file.filename)[0]}_report.md")
-    with open(report_path, "w") as f:
+    with open(report_path, "w", encoding="utf-8") as f:
         f.write(report)
     print("✅ Report saved.")
 

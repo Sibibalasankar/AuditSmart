@@ -38,10 +38,12 @@ body {
   min-height: 100vh;
 }
 
+/* Dashboard Layout */
 .audit-dashboard {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  width: 100%;
 }
 
 .dashboard-header {
@@ -76,41 +78,38 @@ body {
 
 .subtitle {
   color: var(--text-secondary);
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   max-width: 600px;
   margin: 0 auto;
 }
 
-.dashboard-content {
+/* Vertical Layout */
+.vertical-layout {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
-  animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.upload-panel {
-  flex: 1;
-  max-width: 480px;
-  min-width: 400px;
+.upload-section {
+  width: 100%;
 }
 
-.results-panel {
-  flex: 2;
+.results-section {
+  width: 100%;
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Form Styling */
+.audit-form {
   background: var(--bg-card);
   border-radius: 1rem;
   padding: 2rem;
   border: 1px solid var(--border);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.6s ease-out;
-}
-
-.audit-form {
-  background: var(--bg-card);
-  border-radius: 1rem;
-  padding: 2.5rem;
-  margin-bottom: 2rem;
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  width: 100%;
 }
 
 .form-header {
@@ -147,6 +146,35 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Upload Method Tabs */
+.upload-method-tabs {
+  display: flex;
+  margin-bottom: 1.5rem;
+  border-radius: 0.75rem;
+  background: var(--bg-card-light);
+  padding: 0.25rem;
+}
+
+.method-tab {
+  flex: 1;
+  padding: 0.75rem;
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.method-tab.active {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* File Upload */
 .file-upload {
   margin-bottom: 1.5rem;
   transition: all 0.3s ease;
@@ -314,6 +342,71 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Paste Preview */
+.paste-preview {
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.paste-placeholder {
+  width: 100%;
+  padding: 2.5rem;
+  border: 2px dashed var(--border);
+  border-radius: 1rem;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
+}
+
+.paste-placeholder:hover {
+  border-color: var(--accent);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.code-preview {
+  background: var(--bg-darkest);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  position: relative;
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.code-preview pre {
+  font-family: 'Fira Code', monospace;
+  white-space: pre-wrap;
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.edit-paste-btn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.edit-paste-btn:hover {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+/* Submit Button */
 .submit-btn {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
@@ -383,6 +476,7 @@ body {
   animation: spin 1s ease-in-out infinite;
 }
 
+/* Progress Indicator */
 .progress-container {
   margin-top: 1.5rem;
   text-align: center;
@@ -414,6 +508,7 @@ body {
   font-weight: 500;
 }
 
+/* Error Message */
 .error-message {
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.2);
@@ -466,6 +561,16 @@ body {
   color: var(--text-primary);
   background: rgba(255, 255, 255, 0.1);
   transform: rotate(90deg);
+}
+
+/* Results Panel */
+.results-panel {
+  background: var(--bg-card);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 
 .results-header {
@@ -575,6 +680,7 @@ body {
   animation: fadeIn 0.5s ease-out;
 }
 
+/* Vulnerabilities Grid */
 .vulnerability-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -691,6 +797,7 @@ body {
   gap: 0.25rem;
 }
 
+/* No Vulnerabilities */
 .no-vulnerabilities {
   text-align: center;
   padding: 3rem 2rem;
@@ -712,6 +819,7 @@ body {
   font-size: 1rem;
 }
 
+/* Code Container */
 .code-container {
   background: var(--bg-darkest);
   border-radius: 1rem;
@@ -789,6 +897,7 @@ body {
   white-space: pre;
 }
 
+/* Report Card */
 .report-card {
   text-align: center;
   padding: 3rem 2rem;
@@ -834,6 +943,137 @@ body {
 .report-download-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4), 0 4px 6px -2px rgba(79, 70, 229, 0.3);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-body {
+  flex: 1;
+  padding: 1.5rem;
+  overflow: auto;
+}
+
+.code-textarea {
+  width: 100%;
+  height: 400px;
+  background: var(--bg-darkest);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  resize: none;
+  outline: none;
+}
+
+.code-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.modal-footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modal-cancel {
+  background: none;
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal-cancel:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-lighter);
+}
+
+.modal-submit {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modal-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+}
+
+.modal-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* Animations */
@@ -888,17 +1128,7 @@ body {
   100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
 }
 
-@media (max-width: 1200px) {
-  .dashboard-content {
-    flex-direction: column;
-  }
-  
-  .upload-panel {
-    max-width: 100%;
-    min-width: auto;
-  }
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
   .audit-dashboard {
     padding: 1.5rem;
@@ -912,10 +1142,7 @@ body {
     font-size: 1.1rem;
   }
   
-  .audit-form {
-    padding: 1.75rem;
-  }
-  
+  .audit-form,
   .results-panel {
     padding: 1.75rem;
   }
@@ -941,7 +1168,8 @@ body {
     padding: 1rem;
   }
   
-  .audit-form {
+  .audit-form,
+  .results-panel {
     padding: 1.5rem;
   }
   
@@ -954,12 +1182,16 @@ body {
     font-size: 1rem;
   }
   
-  .results-panel {
-    padding: 1.5rem;
-  }
-  
   .code-block {
     padding: 1rem;
     font-size: 0.85rem;
+  }
+  
+  .upload-method-tabs {
+    flex-direction: column;
+  }
+  
+  .method-tab {
+    padding: 0.75rem;
   }
 }
