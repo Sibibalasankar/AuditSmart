@@ -12,6 +12,7 @@
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.9.0",
     "firebase": "^11.6.1",
+    "framer-motion": "^12.10.4",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.294.0",
     "react": "^18.2.0",

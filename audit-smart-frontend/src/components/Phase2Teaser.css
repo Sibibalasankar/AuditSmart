@@ -1,75 +1,438 @@
+/* Phase2Teaser Main Styles */
 .phase2-teaser {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, rgba(110, 72, 170, 0.03) 0%, rgba(18, 18, 30, 1) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.phase2-teaser::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 70% 30%, rgba(110, 72, 170, 0.08) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.main-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.phase2-teaser h2 {
+  text-align: center;
+  margin: 2rem 0 3rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #6e48aa 0%, #9d50bb 50%, #6e48aa 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientText 3s linear infinite;
+}
+
+@keyframes gradientText {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Token Container Styles */
+.token-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  position: relative;
+  z-index: 1;
+}
+
+.token-container::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, 
+    rgba(110, 72, 170, 0.15) 0%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+  top: -50%;
+  left: -50%;
+}
+
+.token-container:hover::before {
+  opacity: 1;
+}
+
+.animated-token {
+  width: 180px;
+  height: auto;
+  filter: drop-shadow(0 0 12px rgba(110, 72, 170, 0.5));
+  transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), filter 0.3s ease;
+  cursor: pointer;
+  will-change: transform;
+  transform-style: preserve-3d;
+  animation: float 6s ease-in-out infinite;
+  backface-visibility: visible;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.token-container:hover .animated-token {
+  transform: perspective(1000px) rotateX(0) rotateY(0) scale(1.15) translateZ(50px);
+  filter: 
+    drop-shadow(0 0 25px rgba(110, 72, 170, 0.9))
+    drop-shadow(0 0 40px rgba(110, 72, 170, 0.5));
+  animation: none;
+}
+
+/* Features Grid Styles */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+.feature-card {
+  background: linear-gradient(145deg, rgba(30, 30, 50, 0.7) 0%, rgba(26, 26, 46, 0.9) 100%);
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid rgba(110, 72, 170, 0.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(110, 72, 170, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(110, 72, 170, 0.15);
+  border-color: rgba(110, 72, 170, 0.4);
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-icon {
+  margin-bottom: 1.5rem;
+  color: #9d50bb;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(110, 72, 170, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  background: rgba(110, 72, 170, 0.2);
+  transform: scale(1.1);
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #f0f0f0;
+}
+
+.feature-card p {
+  color: #b0b0b0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Waitlist Button Styles */
+.waitlist-btn {
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(90deg, #6e48aa 0%, #9d50bb 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 4px 15px rgba(110, 72, 170, 0.3);
+}
+
+.waitlist-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.waitlist-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(110, 72, 170, 0.4);
+}
+
+.waitlist-btn:hover::before {
+  left: 100%;
+}
+
+/* Waitlist Modal Styles */
+.waitlist-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.waitlist-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.waitlist-modal-content {
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+  padding: 3rem;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  border: 1px solid rgba(110, 72, 170, 0.3);
+  box-shadow: 0 0 40px rgba(110, 72, 170, 0.3);
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+}
+
+.waitlist-modal.active .waitlist-modal-content {
+  transform: scale(1);
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(110, 72, 170, 0.2);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-modal:hover {
+  opacity: 1;
+  background: rgba(110, 72, 170, 0.3);
+  transform: rotate(90deg);
+}
+
+.waitlist-modal h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #6e48aa 0%, #9d50bb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.waitlist-modal p {
+  margin-bottom: 1.5rem;
+  color: #ccc;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.waitlist-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.waitlist-modal input {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(110, 72, 170, 0.5);
+  background-color: rgba(20, 20, 40, 0.8);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.waitlist-modal input:focus {
+  outline: none;
+  border-color: #9d50bb;
+  box-shadow: 0 0 0 3px rgba(157, 80, 187, 0.3);
+  background-color: rgba(30, 30, 50, 0.8);
+}
+
+.waitlist-modal button[type="submit"] {
+  background: linear-gradient(90deg, #6e48aa 0%, #9d50bb 100%);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.waitlist-modal button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(110, 72, 170, 0.4);
+}
+
+.waitlist-benefits {
+  background: rgba(110, 72, 170, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #6e48aa;
+  margin-top: 2rem;
+}
+
+.waitlist-benefits h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #ddd;
+  font-size: 1.2rem;
+}
+
+.waitlist-benefits ul {
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.waitlist-benefits li {
+  margin-bottom: 0.75rem;
+  color: #bbb;
+  position: relative;
+  line-height: 1.5;
+}
+
+.waitlist-benefits li::before {
+  content: '•';
+  color: #9d50bb;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  position: absolute;
+}
+
+.success-message {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.success-message p {
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.success-message p:first-child {
+  font-size: 1.5rem;
+  color: #6e48aa;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .phase2-teaser {
     padding: 4rem 0;
-    background: rgba(110, 72, 170, 0.05);
   }
   
   .phase2-teaser h2 {
-    text-align: center;
-    margin-bottom: 3rem;
     font-size: 2rem;
   }
   
   .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   
-  .feature-card {
-    background: var(--card-bg);
+  .waitlist-modal-content {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .phase2-teaser h2 {
+    font-size: 1.8rem;
+  }
+  
+  .waitlist-modal h3 {
+    font-size: 1.5rem;
+  }
+  
+  .waitlist-modal-content {
     padding: 1.5rem;
-    border-radius: 8px;
-    text-align: center;
   }
-  
-  .feature-icon {
-    margin-bottom: 1rem;
-    color: var(--accent);
-  }
-  
-  .waitlist-btn {
-    display: block;
-    margin: 0 auto;
-    background: var(--primary-gradient);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  /* Add to your existing Phase2Teaser.css */
-
-.token-container {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0 3rem;
-  perspective: 1000px;
-}
-
-.animated-token {
-  width: 150px;
-  height: auto;
-  filter: drop-shadow(0 0 12px rgba(110, 72, 170, 0.5));
-  transition: all 0.3s ease;
-  cursor: pointer;
-  will-change: transform;
-}
-
-/* Enhancements to match your theme */
-.gradient-text {
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.feature-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(110, 72, 170, 0.1);
 }

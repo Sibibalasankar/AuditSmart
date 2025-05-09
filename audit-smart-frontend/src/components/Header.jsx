@@ -7,6 +7,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [walletAddress, setWalletAddress] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+  const [isHoveringConnect, setIsHoveringConnect] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -23,6 +24,11 @@ export default function Header() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         setWalletAddress(accounts[0]);
         setIsOpen(false);
+        
+        // Add success animation class temporarily
+        const btn = document.querySelector('.connect-wallet-btn');
+        btn.classList.add('success-animation');
+        setTimeout(() => btn.classList.remove('success-animation'), 2000);
       } catch (err) {
         console.error('Wallet connection error:', err);
       }
@@ -32,7 +38,13 @@ export default function Header() {
   };
 
   const disconnectWallet = () => {
-    setWalletAddress(null);
+    // Add disconnect animation
+    const btn = document.querySelector('.user-profile');
+    btn.classList.add('disconnect-animation');
+    setTimeout(() => {
+      setWalletAddress(null);
+      btn.classList.remove('disconnect-animation');
+    }, 500);
   };
 
   const truncateAddress = (addr) => {
@@ -41,34 +53,40 @@ export default function Header() {
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+      <div className="header-decoration"></div>
       <div className="container">
         <Link to="/" className="logo">
           <div className="logo-icon">
-            <img src="/AuditSmart-LOGO.png" alt="AuditSmart AI Logo" width={50} />
+            <img 
+              src="/AuditSmart-LOGO.png" 
+              alt="AuditSmart AI Logo" 
+              width={50} 
+              className="logo-pulse"
+            />
           </div>
           <span className="logo-text">
-            <span className="gradient-text">Audit</span>Smart <span className='ai-txt'>AI</span>
+            <span className="gradient-text">Audit</span><span>Smart</span><span className='ai-txt'>AI</span>
           </span>
         </Link>
 
         <nav className={`nav ${isOpen ? 'open' : ''}`}>
           <Link 
             to="/" 
-            className={location.pathname === '/' ? 'active' : ''}
+            className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
             onClick={() => setIsOpen(false)}
           >
             Home
           </Link>
           <Link 
             to="/audit" 
-            className={location.pathname === '/audit' ? 'active' : ''}
+            className={`nav-link ${location.pathname === '/audit' ? 'active' : ''}`}
             onClick={() => setIsOpen(false)}
           >
             Audit
           </Link>
           <Link 
             to="/sample-report" 
-            className={location.pathname === '/sample-report' ? 'active' : ''}
+            className={`nav-link ${location.pathname === '/sample-report' ? 'active' : ''}`}
             onClick={() => setIsOpen(false)}
           >
             Sample Report
@@ -76,16 +94,24 @@ export default function Header() {
 
           {walletAddress ? (
             <div className="user-profile">
-              <div className="profile-badge">
+              <div className="profile-badge glow-on-hover">
                 <span className="wallet-address">{truncateAddress(walletAddress)}</span>
               </div>
-              <button onClick={disconnectWallet} className="logout-btn">
+              <button onClick={disconnectWallet} className="logout-btn gradient-hover">
                 <span>Disconnect</span>
               </button>
             </div>
           ) : (
-            <button onClick={connectWallet} className="google-signin-btn">
+            <button 
+              onClick={connectWallet} 
+              className="connect-wallet-btn gradient-hover"
+              onMouseEnter={() => setIsHoveringConnect(true)}
+              onMouseLeave={() => setIsHoveringConnect(false)}
+            >
               <span>Connect Wallet</span>
+              {isHoveringConnect && (
+                <div className="connect-ripple"></div>
+              )}
             </button>
           )}
         </nav>
@@ -95,7 +121,11 @@ export default function Header() {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? (
+            <X size={28} className="menu-icon-animate" />
+          ) : (
+            <Menu size={28} className="menu-icon-animate" />
+          )}
         </button>
       </div>
     </header>
